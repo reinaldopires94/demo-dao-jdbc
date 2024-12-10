@@ -10,5 +10,4 @@ public interface SellerDao {
 	void deleteBy(Integer id);
 	Seller findById(Integer id);
 	List<Seller> findAll();
-
 }
