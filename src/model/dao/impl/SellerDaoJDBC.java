@@ -21,11 +21,13 @@ public class SellerDaoJDBC implements SellerDao {
 
 	public SellerDaoJDBC(Connection conn) {
 		this.conn = conn;
-	}
+	} 
 
 	@Override
 	public void insert(Seller obj) {
+		
 		PreparedStatement st = null;
+		
 		try {
 			st = conn.prepareStatement(
 					"INSERT INTO seller " 
@@ -64,7 +66,9 @@ public class SellerDaoJDBC implements SellerDao {
 
 	@Override
 	public void update(Seller obj) {
+		
 		PreparedStatement st = null;
+		
 		try {
 			st = conn.prepareStatement(
 					"UPDATE seller "
@@ -91,6 +95,7 @@ public class SellerDaoJDBC implements SellerDao {
 
 	@Override
 	public void deleteBy(Integer id) {
+		
 		PreparedStatement st = null;
 		try {
 			st = conn.prepareStatement("DELETE FROM seller WHERE Id = ?");
@@ -134,6 +139,7 @@ public class SellerDaoJDBC implements SellerDao {
 	}
 
 	private Seller instatiateSeller(ResultSet rs, Department dep) throws SQLException {
+		
 		Seller obj = new Seller();
 		obj.setId(rs.getInt("Id"));
 		obj.setName(rs.getString("Name"));
@@ -145,6 +151,7 @@ public class SellerDaoJDBC implements SellerDao {
 	}
 
 	private Department instantiateDepartment(ResultSet rs) throws SQLException {
+		
 		Department dep = new Department();
 		dep.setId(rs.getInt("DepartmentId"));
 		dep.setName(rs.getString("DepName"));
@@ -153,12 +160,15 @@ public class SellerDaoJDBC implements SellerDao {
 
 	@Override
 	public List<Seller> findAll() {
+		
 		PreparedStatement st = null;
 		ResultSet rs = null;
 
 		try {
 			st = conn.prepareStatement(
-					"SELECT seller.*, department.Name AS DepName " + "FROM seller, department " + "ORDER BY Name");
+					"SELECT seller.*, department.Name AS DepName " 
+			        + "FROM seller, department " 
+				   + "ORDER BY Name");
 
 			rs = st.executeQuery();
 
@@ -187,6 +197,7 @@ public class SellerDaoJDBC implements SellerDao {
 
 	@Override
 	public List<Seller> findByDepartment(Department department) {
+		
 		PreparedStatement st = null;
 		ResultSet rs = null;
 
