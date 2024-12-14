@@ -32,13 +32,13 @@ public class SellerDaoJDBC implements SellerDao {
 			        + "(Name, Email, BirthDate, BaseSalary, DepartmentId) " 
 					+"VALUES "		
 					+ "(?, ?, ?, ?, ?)",
-					Statement.RETURN_GENERATED_KEYS);
+					Statement.RETURN_GENERATED_KEYS); 
 			
 			st.setString(1, obj.getName());
 			st.setString(2, obj.getEmail());
 			st.setDate(3, new java.sql.Date(obj.getBirthDate().getTime()));
 			st.setDouble(4, obj.getBaseSalary());
-			st.setInt(5, obj.getDepartment().getId());
+			st.setInt(5, obj.getDepartment().getId()); 
 
 			int rowsAffected = st.executeUpdate();
 
@@ -46,7 +46,7 @@ public class SellerDaoJDBC implements SellerDao {
 				ResultSet rs = st.getGeneratedKeys();
 				if (rs.next()) {
 					int id = rs.getInt(1);
-					obj.setId(id);
+					obj.setId(id); 
 				}
 				DB.closeResultSet(rs);
 			} 
@@ -82,7 +82,7 @@ public class SellerDaoJDBC implements SellerDao {
 			 st.executeUpdate();
 			
 		} catch (SQLException e) {
-			throw new DbExceptoion(e.getMessage());
+			throw new DbExceptoion(e.getMessage()); 
 		}
 		finally {
 			DB.closeStatement(st);
@@ -109,7 +109,7 @@ public class SellerDaoJDBC implements SellerDao {
 	@Override
 	public Seller findById(Integer id) {
 
-		PreparedStatement st = null;
+		PreparedStatement st = null; 
 		ResultSet rs = null;
 
 		try {

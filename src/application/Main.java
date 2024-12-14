@@ -25,16 +25,16 @@ public class Main {
 		Department department = new Department(2, null);
 		List<Seller> list = sellerDao.findByDepartment(department);
 		for (Seller obj : list) {
-			System.out.println(obj);
+			System.out.println(obj); 
 		}
 		
-		System.out.println("\n=== TEST 3: seller findAll ===");
+		System.out.println("\n=== TEST 3: seller findAll ===");  
 		list = sellerDao.findAll();
 		for (Seller obj : list) {
-			System.out.println(obj);
+			System.out.println(obj); 
 		}
 		
-		System.out.println("\n=== TEST 4: seller findAll ===");
+		System.out.println("\n=== TEST 4: INSERT ===");
 		Seller seller2 = new Seller(null, "Romeo", "romeo@gmail.com", new Date(), 4000.8, department);
 		sellerDao.insert(seller2);
 		System.out.println("Inserted! New id = " + seller2.getId());
